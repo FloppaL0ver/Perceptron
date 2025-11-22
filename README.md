@@ -6,6 +6,18 @@ Then, it's run through a sigmoid function to squash the value of the sum to be b
 
 The purpose of this project was to explore machine learning at a simple level that was achievable with no machine learning libraries needed.
 
+The only requirements are numpy and matplotlib.
+Numpy is extremely useful since numpy arrays act like vectors and so it's much easier to do operations on each specific element of an array rather than having to write a long for-loop. Additionally, it's also very useful for calculating the sum through finding the dot product of the weights array and the inputs array.
+Matplotlib is used for graphically representing the changes in cost for the perceptron.
+
+---
+
+First, the user inputs a learning rate (how fast or slow the perceptron changes its weight and bias), then they input the number of inputs (the number of parameters).
+The way that inputs are formatted is: [input input input expected]; the last digit is the expected value. Sets of training data are separated by commads.
+Next, the user inputs the number of epochs (training cycles).
+
+When the perceptron is trained, inputs and expected values are given to the train function, when then gives the inputs to the feed function, which returns the sum of the inputs multiplied by the weights (with the bias added onto it) after it has gone through the sigmoid function.
+
 The sigmoid function is simply:
 
 $$
@@ -16,6 +28,7 @@ Where
 $$
 x = W \cdot i + b
 $$
+It's needed to make the value of the sum be between 0 and 1 so that we can use this to compare with the expected value later.
 
 
 The cost (or mean-squared error) is calculated through:
@@ -44,13 +57,13 @@ The gradient for cost w.r.t. bias is:
 
 
 $$
-\frac{dC}{dW} = 2 \cdot (O - Y) \cdot O \cdot (1 - O)
+\frac{dC}{db} = 2 \cdot (O - Y) \cdot O \cdot (1 - O)
 $$
 
 ![bias gradient](biasGrad.png)
 
-We find the gradient so that we can go in the opposite direction to reduce the cost.  
-If the perceptron overestimates the output, then the weights and bias will be adjusted accordingly:
+We find the gradient so that we can go in the opposite direction to reduce the cost. At the point where cost is 0, the gradient will also be 0 (a minimum point). Therefore, if we go against the gradient, eventually, the perceptron will optimise its weights and bias until its cost is near 0 (where the gradient is very small).
+If the perceptron overestimates or underestimates the output, then the weights and bias will be adjusted accordingly:
 
 $$
 \text{self.weights} -= \text{wGrad} \cdot \text{input} \cdot \text{learningRate}
@@ -67,13 +80,17 @@ The equations work for multiple weights because of the magic of numpy arrays (th
 ---
 
 A graph is drawn using matplotlib, showing average cost and epoch (training cycles).  
-Every cycle, the perceptron is trained and then its average cost:
+Every cycle, the perceptron is trained and then each cycle's total cost is averaged and graphed:
 
 $$
 \text{Average Cost} = \frac{\text{Total Cost}}{\text{Number of Training Samples}}
 $$
 
 is calculated.
+
+When we plot the costs table, we are plotting the elements of cost against each element's index (the epoch).
+
+
 
 Essentially, the perceptron is finding 'best-fit' values for all of the training data provided; after many cycles, it will eventually find a combination which minimises the error for all of the data the best.
 
