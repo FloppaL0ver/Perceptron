@@ -148,7 +148,7 @@ while True:
             #last number is the expected value as per stipulated by the input requirements
             expected = floats[-1]
 
-            #if num_inputs is equal to 2 and the user puts something like [0,1,1,1] instead of [0,1,1] then it'll skip over it (remember that the last digit is the expected value)
+            #if num_inputs is equal to 2 and the user puts something like [0 1 1 1] instead of [0 1 1] then it'll skip over it (remember that the last digit is the expected value)
             if len(inputs) != num_inputs:
                 continue
         
@@ -171,7 +171,6 @@ while True:
 
 
 
-costs = []
 
 while True:
     try:
@@ -184,7 +183,7 @@ while True:
         print("ValueError; try again")
 
 #running through each epoch (an epoch is like one cycle of training)
-
+costs = []
 #I initialise total_cost here so I could display average cost at the end. There's probably a better way to do this
 total_cost = 0
 for i in range(epoch):
