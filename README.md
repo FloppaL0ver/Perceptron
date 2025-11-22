@@ -1,5 +1,5 @@
 # Simple Perceptron
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <https://youtu.be/-0wIaHgIVPE>
 #### Description:
 This is a simple perceptron which accepts inputs (and expected values) and applies weights to them. Then, it sums up the weights and adds bias.  
 Then, it's run through a sigmoid function to squash the value of the sum to be between 0 and 1. We want the output to be squashed so that it can be compared to our expected value (which is a value from 0 to 1).
@@ -41,6 +41,8 @@ We have to calculate different gradients w.r.t. cost and bias and can't use the 
 ![weight gradient](weightGrad.png)  
 
 The gradient for cost w.r.t. bias is:
+
+
 $$
 \frac{dC}{dW} = 2 \cdot (O - Y) \cdot O \cdot (1 - O)
 $$
